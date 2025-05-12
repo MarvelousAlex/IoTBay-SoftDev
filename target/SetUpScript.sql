@@ -8,6 +8,5 @@ CREATE TABLE User (
                       id        INTEGER             PRIMARY KEY AUTOINCREMENT,
                       email     VARCHAR(100)    NOT NULL UNIQUE,
                       password  VARCHAR(100)    NOT NULL,
-                      name      VARCHAR(100)    NOT NULL,
-                      userType  VARCHAR(50)     NOT NULL
+                      name      VARCHAR(100)    NOT NULL
 );

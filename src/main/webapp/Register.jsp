@@ -45,7 +45,6 @@
             </div>
 
             <form id="registerForm" method="post" action="RegisterServlet" class="space-y-6">
-                <input type="hidden" name="userType" value="customer">
                 <div id="formSuccess" class="hidden success-message text-center"></div>
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>

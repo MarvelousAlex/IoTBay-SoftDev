@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.sql.Driver;
 
 public class DBConnector {
-    private static final String JDBC_URL = "jdbc:sqlite:IoTBayDB.db";
+    private static final String JDBC_URL = "jdbc:sqlite:UserManagement.sqlite";
     private Connection connection;
 
     // Load the JDBC driver once
@@ -41,23 +41,12 @@ public class DBConnector {
      */
     private void initTables() throws SQLException {
         try (Statement stmt = connection.createStatement()) {
-            // RegisteredUser table
-            stmt.executeUpdate(
-                    "CREATE TABLE IF NOT EXISTS RegisteredUser ("
-                            + "UserId INTEGER PRIMARY KEY AUTOINCREMENT,"
-                            + "Email TEXT UNIQUE NOT NULL,"
-                            + "PasswordHash TEXT NOT NULL,"
-                            + "FullName TEXT NOT NULL,"
-                            + "PhoneNumber TEXT,"
-                            + "Active INTEGER NOT NULL DEFAULT 1"
-                            + ");"
-            );
             stmt.executeUpdate(
                 "CREATE TABLE IF NOT EXISTS User ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "email TEXT UNIQUE NOT NULL,"
                 + "password TEXT NOT NULL,"
-                + "name TEXT NOT NULL,"
+                + "name TEXT NOT NULL"
                 + ");"
             );
         }

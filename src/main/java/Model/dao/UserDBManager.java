@@ -14,17 +14,32 @@ public class UserDBManager extends DBManager<User> {
         return resultSet.getInt(1);
     }
 
+    public User findByEmail(String email) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM User WHERE email = ?");
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            User user = new User(
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    rs.getString("name")
+            );
+            user.setId(rs.getInt("id"));
+            return user;
+        }
+        return null;
+    }
+
     public UserDBManager(Connection connection) throws SQLException {
         super(connection);
     }
 
     //CREATE
     public User add(User user) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User(Email, Password, Name, userType) VALUES (?, ?, ?, ?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User(Email, Password, Name) VALUES (?, ?, ?)");
         preparedStatement.setString(1, user.getEmail());
         preparedStatement.setString(2, user.getPassword());
         preparedStatement.setString(3, user.getName());
-        preparedStatement.setString(4, user.getUserType());
         preparedStatement.executeUpdate();
 
         preparedStatement = connection.prepareStatement("SELECT MAX(id) FROM User");
@@ -52,7 +67,6 @@ public class UserDBManager extends DBManager<User> {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE USERS SET email = ?, password = ?, name = ? WHERE id = ?");
         preparedStatement.setString(1, newUser.getEmail());
         preparedStatement.setString(2, newUser.getPassword());
-        preparedStatement.setString(3, newUser.getUserType());
         preparedStatement.setInt(4, oldUser.getId());
         preparedStatement.executeUpdate();
     }

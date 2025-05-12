@@ -63,10 +63,18 @@ public class RegisterServlet extends HttpServlet {
         User user = new User(email, password, name);
 
         try {
-            User saved = db.Users().add(user);
+            User existingUser = db.Users().findByEmail(email);
+            if (existingUser != null) {
+                req.setAttribute("error", "Email already registered. Please use another.");
+                doGet(req, resp);
+                return;
+            }
+
+            User savedUser = db.Users().add(user); // This calls your add method
             HttpSession session = req.getSession();
-            session.setAttribute("loggedInUser", saved);
+            session.setAttribute("loggedInUser", savedUser);
             resp.sendRedirect(req.getContextPath() + "/Welcome.jsp");
+            return;
         } catch (SQLException e) {
             e.printStackTrace();
             req.setAttribute("error", "Registration failed. Try again.");
