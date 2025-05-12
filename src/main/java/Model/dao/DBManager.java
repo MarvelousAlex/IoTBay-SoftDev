@@ -13,7 +13,7 @@ public abstract class DBManager<T> {
     }
 
     public User get(int id) throws SQLException {
-        String sql = "SELECT id, email, password, name, userType FROM Users WHERE id = ?";
+        String sql = "SELECT id, email, password, name FROM Users WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
