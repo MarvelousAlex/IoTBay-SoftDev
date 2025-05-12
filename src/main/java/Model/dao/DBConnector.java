@@ -48,7 +48,6 @@ public class DBConnector {
                             + "Email TEXT UNIQUE NOT NULL,"
                             + "PasswordHash TEXT NOT NULL,"
                             + "FullName TEXT NOT NULL,"
-                            + "UserType TEXT NOT NULL,"
                             + "PhoneNumber TEXT,"
                             + "Active INTEGER NOT NULL DEFAULT 1"
                             + ");"
@@ -59,7 +58,6 @@ public class DBConnector {
                 + "email TEXT UNIQUE NOT NULL,"
                 + "password TEXT NOT NULL,"
                 + "name TEXT NOT NULL,"
-                + "userType TEXT NOT NULL"
                 + ");"
             );
         }

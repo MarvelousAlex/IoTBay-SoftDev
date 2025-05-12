@@ -38,11 +38,10 @@ public class LoginServlet extends HttpServlet {
                             rs.getInt("id"),
                             rs.getString("email"),
                             rs.getString("password"),
-                            rs.getString("name"),
-                            rs.getString("userType")
+                            rs.getString("name")
                     );
                     req.getSession().setAttribute("loggedInUser", user);
-                    resp.sendRedirect(req.getContextPath() + "/welcome.jsp");
+                    resp.sendRedirect(req.getContextPath() + "/Welcome.jsp");
                     return;
                 }
             }

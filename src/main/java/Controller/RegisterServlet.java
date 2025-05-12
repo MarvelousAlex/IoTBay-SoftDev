@@ -37,7 +37,6 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
-        String userType = req.getParameter("userType");
         boolean tos = req.getParameter("tos") != null;
 
         if (!tos) {
@@ -61,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        User user = new User(email, password, name, userType);
+        User user = new User(email, password, name);
 
         try {
             User saved = db.Users().add(user);

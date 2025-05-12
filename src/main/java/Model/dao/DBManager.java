@@ -24,8 +24,7 @@ public abstract class DBManager<T> {
                         rs.getInt("id"),
                         rs.getString("email"),
                         rs.getString("password"),
-                        rs.getString("name"),
-                        rs.getString("userType")
+                        rs.getString("name")
                 );
             }
         }

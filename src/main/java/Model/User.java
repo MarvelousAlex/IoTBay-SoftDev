@@ -7,17 +7,15 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String name;
-    private String userType;
 
-    public User() {
+    public User(int id, String email, String password, String name) {
 
     }
 
-    public User(String email, String password, String name, String userType) {
+    public User(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.userType = userType;
     }
 
     public User(int id, String email, String password, String name, String userType) {
@@ -25,7 +23,6 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.userType = userType;
     }
 
     public int getId() {
@@ -60,14 +57,6 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -75,7 +64,6 @@ public class User implements Serializable {
                 ", email=" + email +
                 ", password=" + password +
                 ", name=" + name +
-                ", userType=" + userType +
                 '}';
     }
 }

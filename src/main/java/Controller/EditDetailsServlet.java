@@ -25,10 +25,9 @@ public class EditDetailsServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
-        String usertype = req.getParameter("usertype");
 
         User existingUser = (User)session.getAttribute("loggedInUser");
-        User newUser = new User(email, password, name, usertype);
+        User newUser = new User(email, password, name);
 
         try {
             db.Users().update(existingUser, newUser);
