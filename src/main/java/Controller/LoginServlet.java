@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/login.jsp")
+        req.getRequestDispatcher("login.jsp")
                 .forward(req, resp);
     }
 
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        String sql = "SELECT id, email, password, name, userType FROM User WHERE email = ? AND password = ?";
+        String sql = "SELECT id, email, password, name FROM User WHERE email = ? AND password = ?";
         try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
             ps.setString(1, email);
             ps.setString(2, password);

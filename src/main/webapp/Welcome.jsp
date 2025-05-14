@@ -49,6 +49,12 @@
             backdrop-filter: blur(5px);
         }
     </style>
+    <script>
+        function confirmDeleteAccount() {
+            alert('Please double check whether you really want to delete your account. This action cannot be undone.');
+            return confirm('Are you sure you want to delete your account?');
+        }
+    </script>
 </head>
 <body class="iot-gradient-bg min-h-screen text-gray-800">
 <div class="container mx-auto px-4 py-12">
@@ -61,6 +67,18 @@
         </div>
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Welcome to IoTBay</h1>
         <p class="text-xl text-blue-100 max-w-2xl mx-auto">Sydney's premier online destination for Internet-of-Things devices</p>
+        <div class="mt-6 space-x-4">
+            <form action="LogoutServlet" method="post" class="inline">
+                <button type="submit" class="bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition">
+                    Logout
+                </button>
+            </form>
+            <form action="DeleteServlet" method="post" class="inline" onsubmit="return confirmDeleteAccount();">
+                <button type="submit" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition">
+                    Delete Account
+                </button>
+            </form>
+        </div>
     </header>
 
     <!-- Project Overview -->
@@ -68,14 +86,7 @@
         <div class="flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-gray-800">IoT Devices Ordering Application</h2>
-                <p class="text-gray-600 mb-6">IoTBay is transforming from a Sydney-based brick-and-mortar retailer to a comprehensive online platform specializing in IoT devices including sensors, actuators, gateways, and more. Our new web application will revolutionize how customers browse and purchase IoT products while providing staff with powerful inventory and order management tools.</p>
-
-                <div class="flex flex-wrap gap-4 mb-6">
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Java</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Spring Boot</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">HTML5/CSS3</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Agile</span>
-                </div>
+                <p class="text-gray-600 mb-6">IoTBay is transforming from a Sydney-based brick-and-mortar retailer to a comprehensive online platform specializing in IoT devices including sensors, actuators, gateways, and more.</p>
 
                 <div class="mb-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                     <h4 class="font-semibold text-blue-800 mb-2">Project Phases:</h4>
@@ -90,7 +101,6 @@
                 </button>
             </div>
             <div class="md:w-1/2">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="IoT Devices" class="w-full h-auto rounded-lg shadow-md">
             </div>
         </div>
     </section>

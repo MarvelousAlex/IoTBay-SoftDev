@@ -51,7 +51,7 @@
                 <p class="text-gray-600 mt-2">Login with your account</p>
             </div>
 
-            <form id="loginForm" class="space-y-6" method="post" action="login">
+            <form id="loginForm" class="space-y-6" method="post" action="LogoutServlet">
                 <% String error = (String) request.getAttribute("error");
                    if (error != null) { %>
                   <div class="error-message text-center"><%= error %></div>
