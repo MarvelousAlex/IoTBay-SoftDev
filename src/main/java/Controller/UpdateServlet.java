@@ -22,12 +22,12 @@ public class UpdateServlet extends HttpServlet {
 
         DAO db = (DAO)session.getAttribute("db");
 
-        String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        String name = req.getParameter("name");
 
         User existingUser = (User)session.getAttribute("loggedInUser");
-        User newUser = new User(name, email, password);
+        User newUser = new User(email, password, name);     // here!!
 
         try {
             db.Users().update(existingUser, newUser);

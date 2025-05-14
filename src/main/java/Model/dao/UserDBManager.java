@@ -81,6 +81,7 @@ public class UserDBManager extends DBManager<User> {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE User SET email = ?, password = ?, name = ? WHERE id = ?");
         preparedStatement.setString(1, newUser.getEmail());
         preparedStatement.setString(2, newUser.getPassword());
+        preparedStatement.setString(3, newUser.getName());
         preparedStatement.setInt(4, oldUser.getId());
         preparedStatement.executeUpdate();
     }

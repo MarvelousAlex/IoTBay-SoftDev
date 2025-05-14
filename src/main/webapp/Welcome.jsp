@@ -53,6 +53,20 @@
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(5px);
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            background: linear-gradient(90deg, #ff6ec4, #7873f5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            transition: text-shadow 0.3s ease-in-out;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
+        }
+
     </style>
     <script>
         function confirmDeleteAccount() {
@@ -73,6 +87,8 @@
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Welcome to IoTBay</h1>
         <p class="text-xl text-blue-100 max-w-2xl mx-auto">Sydney's premier online destination for Internet-of-Things devices</p>
         <div class="mt-6 space-x-4">
+
+            <a href="updateUser.jsp">Update Profile</a>
             <form action="LogoutServlet" method="post" class="inline">
                 <button type="submit" class="bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition">
                     Logout

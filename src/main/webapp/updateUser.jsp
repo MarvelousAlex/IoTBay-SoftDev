@@ -5,6 +5,15 @@
   Time: 16:58
   To change this template use File | Settings | File Templates.
 --%>
+
+<%@ page import="Model.User" %>
+<%@ page import="Model.dao.DBManager" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+  User user = (User)session.getAttribute("loggedInUser");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +23,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(90deg, #ff6ec4, #7873f5);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: text-shadow 0.3s ease-in-out;
+    }
+
+    a:hover {
+      text-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
+    }
+
     .input-highlight {
       transition: all 0.3s ease;
     }
@@ -54,140 +78,74 @@
       </div>
     </div>
 
-    <!-- Form -->
-    <form id="profileForm" class="p-6 space-y-6">
-      <!-- Name Field -->
-      <div class="space-y-2">
+    <form action="UpdateServlet" method="post" id="profileForm" class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md space-y-6">
+      <!-- Full Name Field -->
+      <div>
         <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-        <div class="relative">
+        <div class="relative mt-1">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <i class="fas fa-user text-gray-400"></i>
           </div>
           <input
-                  type="text"
                   id="name"
                   name="name"
-                  class="input-highlight pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 border"
-                  placeholder="John Doe"
-                  required
-          >
+                  type="text"
+                  value="<%=user.getName()%>"
+                  class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your full name"
+          />
         </div>
-        <p id="nameError" class="text-red-500 text-xs italic hidden">Please enter a valid name</p>
+        <p id="nameError" class="mt-1 text-red-500 text-sm hidden">Please enter a valid name</p>
       </div>
 
-      <!-- Email Field -->
-      <div class="space-y-2">
+      <!-- Email Address Field -->
+      <div>
         <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-        <div class="relative">
+        <div class="relative mt-1">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <i class="fas fa-envelope text-gray-400"></i>
           </div>
           <input
-                  type="email"
                   id="email"
                   name="email"
-                  class="input-highlight pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 border"
-                  placeholder="john@example.com"
-                  required
-          >
+                  type="email"
+                  value="<%=user.getEmail()%>"
+                  class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your email address"
+          />
         </div>
-        <p id="emailError" class="text-red-500 text-xs italic hidden">Please enter a valid email address</p>
+        <p id="emailError" class="mt-1 text-red-500 text-sm hidden">Please enter a valid email address</p>
       </div>
 
-      <!-- Current Password -->
-      <div class="space-y-2">
-        <label for="currentPassword" class="block text-sm font-medium text-gray-700">Current Password</label>
-        <div class="relative">
+      <!-- Password Field -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <div class="relative mt-1">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <i class="fas fa-lock text-gray-400"></i>
           </div>
           <input
+                  id="password"
+                  name="password"
                   type="password"
-                  id="currentPassword"
-                  name="currentPassword"
-                  class="input-highlight pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 border"
-                  placeholder="••••••••"
-                  required
-          >
-          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <i id="toggleCurrentPassword" class="password-toggle fas fa-eye-slash text-gray-400"></i>
-          </div>
+                  value="<%=user.getPassword()%>"
+                  class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your password"
+          />
         </div>
-        <p id="currentPasswordError" class="text-red-500 text-xs italic hidden">Current password is required</p>
       </div>
 
-      <!-- New Password -->
-      <div class="space-y-2">
-        <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password (optional)</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <i class="fas fa-key text-gray-400"></i>
-          </div>
-          <input
-                  type="password"
-                  id="newPassword"
-                  name="newPassword"
-                  class="input-highlight pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 border"
-                  placeholder="••••••••"
-          >
-          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <i id="toggleNewPassword" class="password-toggle fas fa-eye-slash text-gray-400"></i>
-          </div>
-        </div>
-        <div id="passwordStrength" class="hidden mt-2">
-          <div class="flex space-x-2">
-            <div class="h-1 w-1/4 bg-gray-200 rounded-full" id="strength1"></div>
-            <div class="h-1 w-1/4 bg-gray-200 rounded-full" id="strength2"></div>
-            <div class="h-1 w-1/4 bg-gray-200 rounded-full" id="strength3"></div>
-            <div class="h-1 w-1/4 bg-gray-200 rounded-full" id="strength4"></div>
-          </div>
-          <p id="passwordHint" class="text-xs mt-1 text-gray-500"></p>
-        </div>
-        <p id="passwordError" class="text-red-500 text-xs italic hidden">Password must be at least 8 characters</p>
-      </div>
-
-      <!-- Confirm New Password -->
-      <div class="space-y-2">
-        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <i class="fas fa-key text-gray-400"></i>
-          </div>
-          <input
-                  type="password"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  class="input-highlight pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 border"
-                  placeholder="••••••••"
-                  disabled
-          >
-          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <i id="toggleConfirmPassword" class="password-toggle fas fa-eye-slash text-gray-400"></i>
-          </div>
-        </div>
-        <p id="confirmPasswordError" class="text-red-500 text-xs italic hidden">Passwords don't match</p>
-      </div>
-
-      <!-- Form Actions -->
-      <div class="flex items-center justify-between pt-4">
-        <button
-                type="button"
-                class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all"
-                id="cancelBtn"
-        >
-          Cancel
-        </button>
+      <!-- Submit Button -->
+      <div class="pt-4">
         <button
                 type="submit"
-                class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all flex items-center"
-                id="submitBtn"
+                class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <span id="submitText">Update Profile</span>
-          <i id="submitSpinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+          Update Profile
         </button>
       </div>
     </form>
-  </div>
+
 
   <!-- Success Modal -->
   <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
