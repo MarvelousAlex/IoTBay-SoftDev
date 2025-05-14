@@ -29,8 +29,10 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         DAO db = (DAO) req.getSession().getAttribute("db");
         if (db == null) {
+            System.out.println("1");
             req.setAttribute("error", "Database access unavailable.");
             doGet(req, resp);
+
             return;
         }
 
@@ -40,21 +42,25 @@ public class RegisterServlet extends HttpServlet {
         boolean tos = req.getParameter("tos") != null;
 
         if (!tos) {
+            System.out.println("2");
             req.setAttribute("error", "You must agree to the terms.");
             doGet(req, resp);
             return;
         }
         if (!EMAIL_PATTERN.matcher(email).matches()) {
+            System.out.println("3");
             req.setAttribute("error", "Please enter a valid email address.");
             doGet(req, resp);
             return;
         }
         if (password == null || password.length() < 6) {
+            System.out.println("4");
             req.setAttribute("error", "Password must be at least 6 characters.");
             doGet(req, resp);
             return;
         }
         if (name == null || name.trim().isEmpty()) {
+            System.out.println("5");
             req.setAttribute("error", "Name cannot be empty.");
             doGet(req, resp);
             return;
@@ -65,6 +71,7 @@ public class RegisterServlet extends HttpServlet {
         try {
             User existingUser = db.Users().findByEmail(email);
             if (existingUser != null) {
+                System.out.println("7");
                 req.setAttribute("error", "Email already registered. Please use another.");
                 doGet(req, resp);
                 return;

@@ -27,6 +27,25 @@ public class DeleteServlet extends HttpServlet {
             System.out.format("Failed to remove %s from the database", user.getEmail());
         }
         session.removeAttribute("loggedInUser");
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect("landing.jsp");
     }
 }
+
+
+//@WebServlet("/DeleteServlet")
+//public class DeleteServlet extends HttpServlet {
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        HttpSession session = req.getSession();
+//        User user = (User)session.getAttribute("loggedInUser");
+//        DBManager db = (DBManager)session.getAttribute("db");
+//
+//        try {
+//            db.removeUser(user);
+//        } catch (SQLException e) {
+//            System.out.format("Failed to %s from the database", user.getEmail());
+//        }
+//        session.removeAttribute("loggedInUser");
+//        resp.sendRedirect("index.jsp");
+//    }
+//}
