@@ -1,3 +1,8 @@
+<%@ page import="Model.User" %><%
+    User user = (User)session.getAttribute("loggedInUser");
+    System.out.println();
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

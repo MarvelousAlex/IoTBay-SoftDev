@@ -28,28 +28,13 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        String sql = "SELECT id, email, password, name FROM User WHERE email = ? AND password = ?";
-        try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
-            ps.setString(1, email);
-            ps.setString(2, password);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    User user = new User(
-                            rs.getInt("id"),
-                            rs.getString("email"),
-                            rs.getString("password"),
-                            rs.getString("name")
-                    );
-                    req.getSession().setAttribute("loggedInUser", user);
-                    resp.sendRedirect(req.getContextPath() + "/Welcome.jsp");
-                    return;
-                }
-            }
+        try {
+            User user = db.Users().getUserByEmailAndPassword(email, password);
+            req.getSession().setAttribute("loggedInUser", user);
+            System.out.println(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        req.setAttribute("error", "Invalid email or password.");
-        doGet(req, resp);
+        resp.sendRedirect("Welcome.jsp");
     }
 }

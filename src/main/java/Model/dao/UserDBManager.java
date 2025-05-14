@@ -62,9 +62,23 @@ public class UserDBManager extends DBManager<User> {
                 resultSet.getString(5));
     }
 
+    public User getUserByEmailAndPassword(String email, String password) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM User WHERE email = ? AND password = ?");
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        User user =  new User();
+        user.setId(resultSet.getInt(1));
+        user.setEmail(resultSet.getString(2));
+        user.setPassword(resultSet.getString(3));
+        user.setName(resultSet.getString(4));
+        return user;
+    }
+
     //UPDATE
     public void update(User oldUser, User newUser) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE USERS SET email = ?, password = ?, name = ? WHERE id = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE User SET email = ?, password = ?, name = ? WHERE id = ?");
         preparedStatement.setString(1, newUser.getEmail());
         preparedStatement.setString(2, newUser.getPassword());
         preparedStatement.setInt(4, oldUser.getId());
@@ -73,7 +87,7 @@ public class UserDBManager extends DBManager<User> {
 
     //DELETE
     public void delete(User user) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM USERS WHERE UserId = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM User WHERE id = ?");
         preparedStatement.setInt(1, user.getId());
         preparedStatement.executeUpdate();
     }

@@ -25,6 +25,7 @@ public class DeleteServlet extends HttpServlet {
             db.Users().delete(user);
         } catch (SQLException e) {
             System.out.format("Failed to remove %s from the database", user.getEmail());
+            e.printStackTrace();
         }
         session.removeAttribute("loggedInUser");
         resp.sendRedirect("landing.jsp");
