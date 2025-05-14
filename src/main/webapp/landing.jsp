@@ -72,9 +72,6 @@
                     <a href="Register.jsp" class="btn-hover px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white nunito-semibold">
                         Register <i class="fa-solid fa-paper-plane"></i>
                     </a>
-                    <a href="staffLogin.jsp" class="btn-hover px-10 py-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white nunito-semibold">
-                        Admin <i class="fa-solid fa-circle-user"></i>
-                    </a>
                 </div>
             </div>
             <div class="mt-16 lg:mt-0 flex justify-center">
