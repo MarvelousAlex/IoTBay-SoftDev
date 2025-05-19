@@ -7,7 +7,7 @@
 --%>
 
 <%@ page import="Model.User" %>
-<%@ page import="Model.dao.DBManager" %>
+<%@ page import="com.dao.DBManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%

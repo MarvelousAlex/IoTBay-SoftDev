@@ -1,11 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@page import= "Model.dao.*"%>
+<%@page import= "com.dao.*"%>
 <%@ page import="java.sql.SQLException" %>
-
-
-<%
-    DAO db = (DAO)session.getAttribute("db");
-%>
 
 <!DOCTYPE html>
 <html lang="en">
