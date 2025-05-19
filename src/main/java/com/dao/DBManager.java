@@ -9,6 +9,7 @@ public class DBManager {
 
     private CustomerDao customerDao;
     private UserAccessLogDao userAccessLogDao;
+    private StaffDao staffDao;
 
     public DBManager(Connection connection) throws SQLException {
         this.connection = connection;
@@ -26,6 +27,13 @@ public class DBManager {
             userAccessLogDao = new UserAccessLogDao(connection);
         }
         return userAccessLogDao;
+    }
+
+    public StaffDao getStaffDao() {
+        if (staffDao == null) {
+            staffDao = new StaffDao(connection);
+        }
+        return staffDao;
     }
 
 }
