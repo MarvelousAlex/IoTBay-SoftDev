@@ -12,10 +12,8 @@
 <html>
 <head>
   <title>My Personal Details</title>
-  <link rel="stylesheet" href="../assets/css/base.css">
-  <link rel="stylesheet" href="../assets/css/sideBar.css">
-  <link rel="stylesheet" href="../assets/css/userDetails.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/cssFiles/styles.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/cssFiles/ListStyle.css">
 </head>
 <%
   Staff staff = new Staff();
@@ -110,7 +108,7 @@
       </div>
     </div>
 
-    <div class="account-buttons">
+<div class="account-buttons" style="margin-top: 2rem;">
       <a href="<%=request.getContextPath()%>/EditUserDetailsServlet" class="button edit-button">Edit Details</a>
       <a href="<%=request.getContextPath()%>/ViewAccessLogsServlet" class="button view-button">View Account History</a>
       <a href="<%=request.getContextPath()%>/views/deleteAccount.jsp" class="button delete-button">Delete Account</a>
