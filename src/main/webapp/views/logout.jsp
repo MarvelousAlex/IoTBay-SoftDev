@@ -18,9 +18,7 @@
 
 <body>
 <main class="main-container">
-  <div class="logo-container">
-<%--    <img src="../assets/img/Logo.png" alt="Logo" class="logo">--%>
-  </div>
+  <div class="logo-contCategoryainer"> </div>
 
   <div class="content-container">
     <div class="highlight-box">

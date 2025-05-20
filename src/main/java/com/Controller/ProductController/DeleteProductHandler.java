@@ -1,4 +1,4 @@
-package com.controller.ProductController;
+package com.Controller.ProductController;
 
 import com.bean.Product;
 import com.dao.DBManager;

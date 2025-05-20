@@ -23,9 +23,6 @@ public class ProductManagementServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-          //  Connection connection = DriverManager.getConnection("jdbc:sqlite:/Users/yunseo/.SmartTomcat/IoTBay/IoTBay/IoTBayDB.db");
-            //ProductDao productDao = new ProductDao(connection);
-
             HttpSession session = req.getSession();
             DBManager db = (DBManager) session.getAttribute("db");
             ProductDao productDao = db.getProductDao();
