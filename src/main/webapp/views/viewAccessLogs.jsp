@@ -21,8 +21,6 @@
 <html>
 <head>
   <title>Account History</title>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/deleteAccount.css">
 </head>
 <body>
 

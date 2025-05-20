@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.Status" %>
-<%@ page import="com.bean.Product" %>
+
 <%@ page import="java.util.List" %>
-<%@ page import="com.bean.Category" %>
+
 <%@ page import="com.util.Utils" %>
 <html>
 <%
@@ -23,10 +23,6 @@
 %>
 <head>
   <title>IoTBay Home</title>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -63,7 +59,9 @@
     %>
     <a href="<%=request.getContextPath()%>/views/logout.jsp">
       <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+<%--      --%>
       <span>Log Out</span>
+<%--      --%>
     </a>
     <%
       }
@@ -72,74 +70,7 @@
 </div>
 
 <!-- main body -->
-<%
-  Product banner = (Product) request.getAttribute("banner");
-%>
-<div class="mainBody">
-  <div class="banner">
-    <img src="<%=request.getContextPath()%>/assets/img/<%=banner.getImage()%>" alt="Banner Img">
-    <div class="intro">
-      <h5>New Arrival</h5>
-      <p><%=banner.getProductName()%>
-      </p>
-      <span><%=banner.getDescription()%></span>
-      <br>
-      <button class="style1">Buy Now</button>
-    </div>
-  </div>
-  <h5 class="title">Our Products</h5>
-  <div class="Products">
-    <%
-      List<Product> productList = (List<Product>) request.getAttribute("productList");
-      for (Product product : productList) {
-    %>
-    <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="card">
-      <img src="<%=request.getContextPath()%>/assets/img/<%=product.getImage()%>" alt="Device">
-      <h5><%=product.getProductName()%>
-      </h5>
-      <p><%=product.getDescription()%>
-      </p>
-      <span>$<%=product.getPrice()%></span>
-    </a>
-    <%
-      }
-    %>
-  </div>
-  <a href="<%=request.getContextPath()%>/productServlet">
-    <button class="style1">Show More</button>
-  </a>
 
-  <div class="orderIntro">
-    <div>
-      <h5>Want to manage your orders?</h5>
-      <p>Manage all of your orders and track your purchases easily.</p>
-      <a href="<%=request.getContextPath()%>/viewOrder">
-        <button>Go to Order</button>
-      </a>
-    </div>
-    <img src="<%=request.getContextPath()%>/assets/img/orders-post.jpg">
-  </div>
-
-  <h5 class="title">Categories</h5>
-  <div class="categories">
-    <%
-      List<Category> categories = (List<Category>) request.getAttribute("categories");
-      for (Category category : categories) {
-    %>
-    <a href="" class="category">
-      <img src="<%=request.getContextPath()%>/assets/img/category<%=category.getCategoryId()%>.png"
-           alt="Category">
-      <br><span><%=category.getCategory()%></span>
-    </a>
-    <%
-      }
-    %>
-
-  </div>
-  <a href="">
-    <button class="style1">Show More</button>
-  </a>
-</div>
 
 <!-- footer -->
 <div class="footer">
@@ -183,7 +114,6 @@
     </div>
   </div>
   <hr>
-  <p>©2025. IoTBay Group 4 All Right Reserved</p>
 </div>
 </body>
 

@@ -34,7 +34,7 @@ public class UserAccessLogDao {
     // Update log to include logout time
     public void logLogout(int userAccessLogId) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE UserAccessLog SET " +
-                "logout_time = CURRENT_TIMESTAMP WHERE userAccessLogId = ?");
+                "logoutTime = CURRENT_TIMESTAMP WHERE userAccessLogId = ?");
         preparedStatement.setInt(1, userAccessLogId);
         preparedStatement.executeUpdate();
     }
