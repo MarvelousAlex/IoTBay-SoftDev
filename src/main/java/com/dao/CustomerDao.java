@@ -17,7 +17,7 @@ public class CustomerDao {
 
     // Create user
     public void addUser(Customer customer) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, first_name, last_name, " +
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, firstName, lastName, " +
                 "password, email, phone, status, address, state, city, postcode, country,`type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         int status = customer.getStatus()=="Active"?1:0;
         preparedStatement.setString(1, customer.getUsername());
@@ -48,7 +48,7 @@ public class CustomerDao {
 
     // Read user
     public Customer getUserById(Integer userId) throws SQLException {
-        PreparedStatement preparedStatement =  connection.prepareStatement("SELECT * FROM User WHERE user_id = ?");
+        PreparedStatement preparedStatement =  connection.prepareStatement("SELECT * FROM User WHERE userId = ?");
         preparedStatement.setLong(1, userId);
         ResultSet resultSet = preparedStatement.executeQuery();
         return mapCustomer(resultSet);
@@ -57,7 +57,7 @@ public class CustomerDao {
 
     // Delete User
     public void deleteUser(Customer customer) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM User WHERE user_id = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM User WHERE userId = ?");
         preparedStatement.setInt(1, customer.getUserId());
         preparedStatement.executeUpdate();
     }
@@ -65,8 +65,8 @@ public class CustomerDao {
     // Update Customer
     public void updateCustomer(Customer customer) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(
-                "UPDATE User SET username=?, first_name=?, last_name=?, password=?, email=?, phone=?, address=?, " +
-                        "state=?, city=?, postcode=?, country=?, `type`=? WHERE user_id=?"
+                "UPDATE User SET username=?, firstName=?, lastName=?, password=?, email=?, phone=?, address=?, " +
+                        "state=?, city=?, postcode=?, country=?, `type`=? WHERE userId=?"
         );
         ps.setString(1, customer.getUsername());
         ps.setString(2, customer.getFirstName());
@@ -86,7 +86,7 @@ public class CustomerDao {
 
     // Set user status to Active/ Inactive
     public void setStatusById(int id, int status) throws SQLException {
-        PreparedStatement ps = connection.prepareStatement("UPDATE User SET status = ? WHERE user_id = ?");
+        PreparedStatement ps = connection.prepareStatement("UPDATE User SET status = ? WHERE userId = ?");
         ps.setInt(1, status);
         ps.setInt(2, id);
         ps.executeUpdate();
@@ -104,7 +104,7 @@ public class CustomerDao {
     // Search customers by name or email
     public List<Customer> getCustomerByNameOrEmailByPage(String query, int page) throws SQLException {
         int offset = (page - 1) * 7;
-        String sql = "SELECT * FROM User WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ? LIMIT ?,7";
+        String sql = "SELECT * FROM User WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ? LIMIT ?,7";
         PreparedStatement ps = connection.prepareStatement(sql);
         String wildcard = "%" + query + "%";
         ps.setString(1, wildcard);
@@ -125,7 +125,7 @@ public class CustomerDao {
 
     // Get number of customers matching search query
     public int getSearchCustomerCount(String query) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM User WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ?";
+        String sql = "SELECT COUNT(*) FROM User WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         String wildcard = "%" + query + "%";
         ps.setString(1, wildcard);
@@ -153,11 +153,11 @@ public class CustomerDao {
         if (rs.next()) {
             customer = new Customer();
             int num = rs.getInt("status");
-            customer.setUserId(rs.getInt("user_id"));
+            customer.setUserId(rs.getInt("userId"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
-            customer.setFirstName(rs.getString("first_name"));
-            customer.setLastName(rs.getString("last_name"));
+            customer.setFirstName(rs.getString("firstName"));
+            customer.setLastName(rs.getString("lastName"));
             customer.setPhone(rs.getLong("phone"));
             customer.setEmail(rs.getString("email"));
             customer.setStatus(num==1?"Active":"Inactive");
@@ -177,11 +177,11 @@ public class CustomerDao {
         while (rs.next()) {
             Customer customer = new Customer();
             int num = rs.getInt("status");
-            customer.setUserId(rs.getInt("user_id"));
+            customer.setUserId(rs.getInt("userId"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
-            customer.setFirstName(rs.getString("first_name"));
-            customer.setLastName(rs.getString("last_name"));
+            customer.setFirstName(rs.getString("firstName"));
+            customer.setLastName(rs.getString("lastName"));
             customer.setPhone(rs.getLong("phone"));
             customer.setEmail(rs.getString("email"));
             customer.setStatus(num==1?"Active":"Inactive");
@@ -199,7 +199,7 @@ public class CustomerDao {
     // usered for anonymous user creation
     public void setUser(Customer customer) throws SQLException {
         PreparedStatement ps = connection.prepareStatement("INSERT INTO User " +
-                "(username, first_name, last_name, type, email, password) VALUES (?, ?, ?, ?, ?, ?)");
+                "(username, firstName, lastName, type, email, password) VALUES (?, ?, ?, ?, ?, ?)");
         ps.setString(1, customer.getUsername());
         ps.setString(2, customer.getFirstName());
         ps.setString(3, customer.getLastName());
@@ -211,7 +211,7 @@ public class CustomerDao {
 
     // get the last user
     public Customer getLastUser() throws SQLException {
-        PreparedStatement ps = connection.prepareStatement("select * from User order by user_id desc");
+        PreparedStatement ps = connection.prepareStatement("select * from User order by userId desc");
         ResultSet rs = ps.executeQuery();
         return mapCustomer(rs);
     }
