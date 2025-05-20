@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_20_5_2025,_10_04 pm_[Changes]1" date="1747742654919" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_5_2025,_10_04 pm_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 20/5/2025, 10:04 pm [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Controller/CustomerController/AddCustomerHandler.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Controller/CustomerController/AddCustomerHandler.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_5_2025,_10_04 pm_[Changes]1/AddCustomerHandler.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Controller/UserAccessController/AnonymousCreation.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Controller/UserAccessController/AnonymousCreation.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_5_2025,_10_04 pm_[Changes]1/AnonymousCreation.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/dao/DBManager.class" />
+    <option name="AFTER_PATH" value="target/classes/com/dao/DBManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_5_2025,_10_04 pm_[Changes]1/DBManager.class" />
+  </binary>
+</changelist>

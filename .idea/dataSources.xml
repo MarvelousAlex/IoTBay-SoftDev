@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="DataTable" uuid="be86caea-b048-4a48-9b4c-2f7dc4daf97f">
+    <data-source source="LOCAL" name="PaymentManagement.sqlite" uuid="bc2ac6c3-09a0-4c59-86be-181cb0e3e74c">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../IoTBay/DataTable</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/PaymentManagement.sqlite</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

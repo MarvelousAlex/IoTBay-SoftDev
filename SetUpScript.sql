@@ -10,3 +10,17 @@ CREATE TABLE User (
                       password  VARCHAR(100)    NOT NULL,
                       name      VARCHAR(100)    NOT NULL
 );
+-- Drop Payments table if it already exists
+DROP TABLE IF EXISTS Payments;
+
+-- Create Payments table
+CREATE TABLE Payments (
+                          id INTEGER PRIMARY KEY AUTOINCREMENT,
+                          userId INTEGER NOT NULL,
+                          method TEXT NOT NULL,
+                          cardNumber TEXT NOT NULL,
+                          amount REAL NOT NULL,
+                          date TEXT NOT NULL,
+                          status TEXT NOT NULL,
+                          FOREIGN KEY (userId) REFERENCES User(id)
+);

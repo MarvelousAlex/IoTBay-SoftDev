@@ -101,9 +101,90 @@
                     </ul>
                 </div>
 
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200 transform hover:scale-105">
-                    Explore IoT Devices
-                </button>
+                <div class="flex space-x-4 mt-4">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200 transform hover:scale-105">
+                        Explore IoT Devices
+                    </button>
+                    <!-- View Cart Button -->
+                    <button onclick="toggleCartPanel()" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-200 transform hover:scale-105 flex items-center space-x-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>View Cart</span>
+                    </button>
+                    <!-- View Payment History Button -->
+                    <a href="PaymentHistoryServlet" class="inline-block">
+                        <span class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200 transform hover:scale-105 flex items-center space-x-2">
+                            <i class="fas fa-receipt"></i>
+                            <span>View Payment History</span>
+                        </span>
+                    </a>
+                </div>
+                <!-- Cart Panel -->
+                <div id="cartPanel" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+                    <div class="p-4 border-b flex justify-between items-center">
+                        <h2 class="text-xl font-bold">Your Cart</h2>
+                        <button onclick="toggleCartPanel()" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="p-4 space-y-4">
+                        <!-- Sample Products -->
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold">Smart Sensor</p>
+                                <p class="text-sm text-gray-500">$49.99</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button class="px-2 bg-gray-200 rounded" onclick="updateQuantity('sensorQty', -1)">-</button>
+                                <span id="sensorQty">1</span>
+                                <button class="px-2 bg-gray-200 rounded" onclick="updateQuantity('sensorQty', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold">IoT Gateway</p>
+                                <p class="text-sm text-gray-500">$79.99</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button class="px-2 bg-gray-200 rounded" onclick="updateQuantity('gatewayQty', -1)">-</button>
+                                <span id="gatewayQty">2</span>
+                                <button class="px-2 bg-gray-200 rounded" onclick="updateQuantity('gatewayQty', 1)">+</button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="flex justify-between font-bold">
+                            <span>Total:</span>
+                            <span id="cartTotal">$209.97</span>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="payment.jsp">
+                                <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Proceed to Payment</button>
+                            </a>
+                            <button onclick="toggleCartPanel()" class="w-full bg-gray-300 text-gray-800 py-2 rounded hover:bg-gray-400">Continue Shopping</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Toggle Script -->
+                <script>
+                    function toggleCartPanel() {
+                        const panel = document.getElementById('cartPanel');
+                        panel.classList.toggle('translate-x-full');
+                    }
+
+                    function updateQuantity(id, delta) {
+                        const qtyEl = document.getElementById(id);
+                        let qty = parseInt(qtyEl.textContent);
+                        qty = Math.max(0, qty + delta);
+                        qtyEl.textContent = qty;
+                        recalculateTotal(); // update total after quantity change
+                    }
+
+                    function recalculateTotal() {
+                        const sensorQty = parseInt(document.getElementById("sensorQty").textContent);
+                        const gatewayQty = parseInt(document.getElementById("gatewayQty").textContent);
+                        const total = (sensorQty * 49.99) + (gatewayQty * 79.99);
+                        document.getElementById("cartTotal").textContent = "$" + total.toFixed(2);
+                    }
+                </script>
             </div>
             <div class="md:w-1/2">
             </div>
