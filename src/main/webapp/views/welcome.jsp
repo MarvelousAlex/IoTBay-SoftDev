@@ -43,9 +43,9 @@
     } else if (staff != null) {
     %>
     <h1>Welcome, <%=staff.getStaffName()%>!</h1>
-    <p class="description">Welcome to the IoTBay System <br> Continue here</p>
+    <p class="description">Welcome to the IoTBay System <br>  Continue to the Product Management Page</p>
     <!-- Go to Product Management Page -->
-    <a href="<%=request.getContextPath()%>/home"><button class="style1">Go to Product Management</button></a>
+    <a href="<%=request.getContextPath()%>/ProductManagementServlet"><button class="style1">Go to Product Management</button></a>
     <%
         }
     %>
