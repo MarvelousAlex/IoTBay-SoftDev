@@ -17,7 +17,7 @@ public class CustomerDao {
 
     // Create user
     public void addUser(Customer customer) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, first_name, last_name, " +
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, firstName, lastName, " +
                 "password, email, phone, status, address, state, city, postcode, country,`type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         int status = customer.getStatus()=="Active"?1:0;
         preparedStatement.setString(1, customer.getUsername());
@@ -153,11 +153,11 @@ public class CustomerDao {
         if (rs.next()) {
             customer = new Customer();
             int num = rs.getInt("status");
-            customer.setUserId(rs.getInt("user_id"));
+            customer.setUserId(rs.getInt("userId"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
-            customer.setFirstName(rs.getString("first_name"));
-            customer.setLastName(rs.getString("last_name"));
+            customer.setFirstName(rs.getString("firstName"));
+            customer.setLastName(rs.getString("lastName"));
             customer.setPhone(rs.getLong("phone"));
             customer.setEmail(rs.getString("email"));
             customer.setStatus(num==1?"Active":"Inactive");
@@ -177,11 +177,11 @@ public class CustomerDao {
         while (rs.next()) {
             Customer customer = new Customer();
             int num = rs.getInt("status");
-            customer.setUserId(rs.getInt("user_id"));
+            customer.setUserId(rs.getInt("userId"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
-            customer.setFirstName(rs.getString("first_name"));
-            customer.setLastName(rs.getString("last_name"));
+            customer.setFirstName(rs.getString("firstName"));
+            customer.setLastName(rs.getString("lastName"));
             customer.setPhone(rs.getLong("phone"));
             customer.setEmail(rs.getString("email"));
             customer.setStatus(num==1?"Active":"Inactive");
@@ -199,7 +199,7 @@ public class CustomerDao {
     // usered for anonymous user creation
     public void setUser(Customer customer) throws SQLException {
         PreparedStatement ps = connection.prepareStatement("INSERT INTO User " +
-                "(username, first_name, last_name, type, email, password) VALUES (?, ?, ?, ?, ?, ?)");
+                "(username, firstName, lastName, type, email, password) VALUES (?, ?, ?, ?, ?, ?)");
         ps.setString(1, customer.getUsername());
         ps.setString(2, customer.getFirstName());
         ps.setString(3, customer.getLastName());
@@ -211,7 +211,7 @@ public class CustomerDao {
 
     // get the last user
     public Customer getLastUser() throws SQLException {
-        PreparedStatement ps = connection.prepareStatement("select * from User order by user_id desc");
+        PreparedStatement ps = connection.prepareStatement("select * from User order by userId desc");
         ResultSet rs = ps.executeQuery();
         return mapCustomer(rs);
     }
