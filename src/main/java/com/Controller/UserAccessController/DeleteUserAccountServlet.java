@@ -69,7 +69,7 @@ public class DeleteUserAccountServlet extends HttpServlet {
             try {
                 staffDao.deleteStaffById(staff.getStaffId());
                 session.removeAttribute("loggedInUser");
-                resp.sendRedirect(req.getContextPath()+"/index.jsp");
+                resp.sendRedirect(req.getContextPath()+"/landing.jsp");
             } catch (SQLException e) {
                 session.setAttribute("errorMessage", "Couldn't delete staff account");
                 resp.sendRedirect(req.getContextPath()+"/deleteAccount.jsp");
