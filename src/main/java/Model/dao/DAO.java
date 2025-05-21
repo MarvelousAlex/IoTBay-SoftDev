@@ -20,6 +20,10 @@ public class DAO {
         return userDBManager;
     }
 
+    public OrderDBManager Orders() throws SQLException {
+        return new OrderDBManager(connection);
+    }
+
     public void close() {
         try {
             if (connection != null && !connection.isClosed()) {

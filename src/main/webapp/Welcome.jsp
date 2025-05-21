@@ -83,6 +83,11 @@
                     Delete Account
                 </button>
             </form>
+            <!-- New Order‐list link -->
+            <a href="orders"
+               class="bg-white text-green-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition">
+                My Orders
+            </a>
         </div>
     </header>
 

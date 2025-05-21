@@ -10,3 +10,15 @@ CREATE TABLE User (
                       password  VARCHAR(100)    NOT NULL,
                       name      VARCHAR(100)    NOT NULL
 );
+
+-- Drop Orders if it exists, then create it
+DROP TABLE IF EXISTS Orders;
+CREATE TABLE IF NOT EXISTS Orders (
+                                      id          INTEGER   PRIMARY KEY AUTOINCREMENT,
+                                      customerId  INTEGER   NOT NULL,
+                                      product     TEXT      NOT NULL,
+                                      quantity    INTEGER   NOT NULL,
+                                      orderDate   TEXT      NOT NULL,
+                                      status      TEXT      NOT NULL,
+                                      FOREIGN KEY(customerId) REFERENCES User(id)
+);
