@@ -87,7 +87,7 @@
     </div>
   </div>
   <hr>
-  <p>©2025. IoTBay Group 5. Created by Wende Zhou</p>
+
 </div>
 </body>
 
