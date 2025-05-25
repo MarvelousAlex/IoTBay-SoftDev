@@ -29,18 +29,140 @@
 <html>
 <head>
   <title>Register</title>
+  <style>
+    .site-header {
+      background-color: #f8f9fa;
+      padding: 15px 20px;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+    }
+    .form-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    form.register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="password"]:focus,
+    select:focus {
+      border-color: #80bdff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0,123,255,.25);
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .container > div {
+      flex: 1 1 45%;
+      min-width: 220px;
+    }
+    .address .container > div {
+      flex: 1 1 30%;
+    }
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    button[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .visibleLink {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .visibleLink:hover {
+      text-decoration: underline;
+    }
+    .errorText {
+      color: #dc3545;
+      font-size: 12px;
+      margin-top: 3px;
+      display: block;
+    }
+    .site-footer {
+      background-color: #f8f9fa;
+      padding: 20px;
+      font-size: 14px;
+      color: #6c757d;
+      text-align: center;
+      border-top: 1px solid #dee2e6;
+    }
+    .site-footer .section {
+      margin-bottom: 15px;
+    }
+    .site-footer .section h6 {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .site-footer a {
+      color: #6c757d;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<header class="header">
+<header class="site-header">
   <!-- Logo -->
-  <a href="<%=request.getContextPath()%>/index.jsp">
-<%--    <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">--%>
+  <a href="<%=request.getContextPath()%>/landing.jsp">
+
   </a>
 </header>
 
-<main>
-  <h1>Register</h1>
-  <form id="registerForm" action="<%= request.getContextPath()%>/RegisterServlet" method="post">
+<main class="form-container">
+  <div class="form-header">
+    <h1>Register</h1>
+  </div>
+  <form id="registerForm" class="register-form" action="<%= request.getContextPath()%>/RegisterServlet" method="post">
     <div class="container" style="align-items: center;">
       <div>
         <label for="userType">Choose your Role:</label>
@@ -171,13 +293,13 @@
       <% } %>
     </div>
     <div class="buttons">
-      <button type="submit">Register</button><br>
+      <button type="submit">Register</button>
       <a href="/views/login.jsp" class="visibleLink">Already have an account?</a>
     </div>
   </form>
 </main>
 
-<footer class="footer">
+<footer class="site-footer">
   <hr>
   <div>
     <div class="section">

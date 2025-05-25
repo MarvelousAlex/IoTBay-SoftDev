@@ -27,25 +27,83 @@
 %>
 <head>
   <title>IoTBay Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .site-header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-menu, .icon-menu {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .site-menu a, .icon-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .site-menu a span.selected {
+      border-bottom: 2px solid white;
+    }
+    .icon-menu i {
+      margin-right: 5px;
+    }
+    .main-content {
+      padding: 20px;
+      min-height: 60vh;
+      background-color: white;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .site-footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .site-footer hr {
+      border-color: #495057;
+    }
+    .site-footer .section {
+      margin-bottom: 15px;
+    }
+    .site-footer a {
+      color: #adb5bd;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
 <!-- header -->
-<div class="header">
+<header class="site-header">
   <!-- Logo -->
   <a href="<%=request.getContextPath()%>/home">
-    <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
   </a>
   <!-- menu -->
-  <menu>
+  <nav class="site-menu">
     <a href="<%= request.getContextPath()%>/home"><span class="selected">Home</span></a>
     <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
     <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
     <a href="<%= request.getContextPath() %>/ViewPayment"><span>Payment</span></a>
-  </menu>
+  </nav>
 
   <!-- icon menu -->
-  <menu class="icon">
+  <nav class="icon-menu">
     <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
       <i class="fa-solid fa-circle-user fa-2x"></i>
       <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
@@ -68,12 +126,15 @@
     <%
       }
     %>
-  </menu>
-</div>
+  </nav>
+</header>
 
+<main class="main-content">
+
+</main>
 
 <!-- footer -->
-<div class="footer">
+<footer class="site-footer">
   <hr>
   <div>
     <div class="section">
@@ -89,7 +150,7 @@
     </div>
   </div>
   <hr>
-</div>
+</footer>
 </body>
 
 </html>

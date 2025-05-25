@@ -55,7 +55,7 @@ public class DeleteUserAccountServlet extends HttpServlet {
             try {
                 customerDao.deleteUser(customer);
                 session.removeAttribute("loggedInUser");
-                resp.sendRedirect(req.getContextPath()+"/index.jsp");
+                resp.sendRedirect(req.getContextPath()+"/landing.jsp");
             } catch (SQLException e) {
                 session.setAttribute("errorMessage", "Couldn't delete customer account");
                 resp.sendRedirect(req.getContextPath()+"/deleteAccount.jsp");

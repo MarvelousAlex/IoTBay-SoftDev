@@ -16,6 +16,120 @@
   <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/userDetails.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .site-header {
+      background-color: #f8f9fa;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .site-menu {
+      display: flex;
+      gap: 15px;
+    }
+    .site-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    .site-menu a:hover {
+      background-color: #e9ecef;
+    }
+    .icon-menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .icon-menu a {
+      color: #333;
+      text-align: center;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .icon-menu a.selected {
+      color: #007bff;
+    }
+    .details-display {
+      margin-top: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    .field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .field label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .field span {
+      background-color: #f1f3f5;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #fff;
+      margin-right: 10px;
+      margin-top: 20px;
+    }
+    .btn-primary {
+      background-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0069d9;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+    }
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+    .site-footer {
+      background-color: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+      border-top: 1px solid #dee2e6;
+      font-size: 14px;
+      color: #6c757d;
+    }
+    .site-footer hr {
+      margin: 15px 0;
+    }
+    .site-footer .section {
+      margin-bottom: 15px;
+    }
+    .site-footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <%
   Customer customer = new Customer();
@@ -28,21 +142,21 @@
 %>
 <body>
 <%--Header--%>
-<div class="header">
+<header class="site-header">
   <!-- Logo -->
   <a href="<%=request.getContextPath()%>/home">
-    <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
+    
   </a>
   <!-- menu -->
-  <menu>
+  <nav class="site-menu">
     <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
     <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
     <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
     <a href="<%= request.getContextPath() %>/ViewPayment"><span>Payment</span></a>
-  </menu>
+  </nav>
 
   <!-- icon menu -->
-  <menu class="icon">
+  <nav class="icon-menu">
     <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet" class="selected">
       <i class="fa-solid fa-circle-user fa-2x"></i>
       <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
@@ -65,10 +179,10 @@
     <%
       }
     %>
-  </menu>
-</div>
+  </nav>
+</header>
 
-<main>
+<main class="main-content">
   <h1>Your Details</h1>
   <div class="details-display">
     <div class="form-row">
@@ -126,15 +240,15 @@
   </div>
 
   <div class="account-buttons">
-    <a href="<%=request.getContextPath()%>/EditUserDetailsServlet" class="button edit-button">Edit Details</a>
-    <a href="<%=request.getContextPath()%>/ViewAccessLogsServlet" class="button view-button">View Account History</a>
-    <a href="<%=request.getContextPath()%>/views/deleteAccount.jsp" class="button delete-button">Delete Account</a>
+    <a href="<%=request.getContextPath()%>/EditUserDetailsServlet" class="btn btn-primary">Edit Details</a>
+    <a href="<%=request.getContextPath()%>/ViewAccessLogsServlet" class="btn btn-secondary">View Account History</a>
+    <a href="<%=request.getContextPath()%>/views/deleteAccount.jsp" class="btn btn-danger">Delete Account</a>
   </div>
 </main>
 
 
 <!-- footer -->
-<div class="footer">
+<footer class="site-footer">
   <hr>
   <div>
     <div class="section">
@@ -176,6 +290,6 @@
   </div>
   <hr>
   <p>©2025. IoTBay Group 4 All Right Reserved</p>
-</div>
+</footer>
 </body>
 </html>

@@ -10,25 +10,82 @@
 <html lang="en">
 <head>
   <title>Login</title>
+  <style>
+    .site-header {
+      border-bottom: 1px solid #a7a7a7;
+      padding: 10px 0;
+    }
+    .form-container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .form-header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .form-control {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .visibleLink {
+      display: block;
+      margin-top: 15px;
+      text-align: center;
+      color: #007bff;
+      text-decoration: none;
+    }
+    .visibleLink:hover {
+      text-decoration: underline;
+    }
+    .site-footer {
+      padding: 20px 0;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
 </head>
 
 <body>
-<div class="header" style="border-bottom: 1px solid #a7a7a7">
+<header class="site-header">
   <!-- Logo -->
-  <a href="../index.jsp">
+  <a href="../landing.jsp">
   </a>
-</div>
+</header>
 
-<div class="content">
-  <div class="title"><h2>Login</h2></div>
+<main class="form-container">
+  <div class="form-header"><h2>Login</h2></div>
 
   <%--Login Form--%>
-  <form action="<%= request.getContextPath() %>/LoginServlet" method="post">
+  <form action="<%= request.getContextPath() %>/LoginServlet" method="post" class="login-form" novalidate>
     <label for="email">Email Address</label>
-    <input id="email" name="email" type="text" placeholder="Email@site.com" required/>
+    <input id="email" name="email" type="text" placeholder="Email@site.com" required class="form-control"/>
 
     <label for="password">Password</label>
-    <input id="password" name="password" type="password" placeholder="Your password" required/>
+    <input id="password" name="password" type="password" placeholder="Your password" required class="form-control"/>
 
     <%
       String errorMessage = (String) session.getAttribute("errorMessage");
@@ -39,14 +96,14 @@
       }
     %>
 
-    <input id="loginBtn" type="submit" value="Login" style="cursor: pointer;"/>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
   </form>
 
   <a href="register.jsp" class="visibleLink">Create an account?</a>
-</div>
+</main>
 
 <!-- footer -->
-<div class="footer">
+<footer class="site-footer">
   <hr>
   <div>
     <div class="section">
@@ -88,7 +145,7 @@
   </div>
   <hr>
 
-</div>
+</footer>
 </body>
 
 </html>
